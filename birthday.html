@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24163a">
+  <title>Happy Birthday · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night" data-transition="stars">
+  <canvas class="sky" aria-hidden="true" data-density="1.4"></canvas>
+
+  <!-- corner flowers -->
+  <div class="corner-wrap" aria-hidden="true">
+  <div class="deco float corner" style="left:-1rem; bottom:-1rem; width:clamp(9rem, 26vw, 18rem); --r:0deg; color:#bda6e6; opacity:.85" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M10 200C30 140 60 100 110 70"/><path d="M60 200c10-40 30-70 60-90"/><path d="M110 200c4-30 14-50 30-64"/>
+      <path d="M50 150c-14-4-22 2-26 14 14 4 22-2 26-14zM90 130c14-4 22 2 26 14-14 4-22-2-26-14zM70 175c-12-2-18 4-20 12 12 2 18-4 20-12z" fill="#5a3a8c" opacity=".9"/>
+      <g fill="#c48ad6" stroke="none"><circle cx="110" cy="62" r="7"/><circle cx="120" cy="55" r="7"/><circle cx="128" cy="65" r="7"/><circle cx="118" cy="72" r="7"/><circle cx="119" cy="64" r="4" fill="#f0dfb0"/></g>
+      <g fill="#bda6e6" stroke="none"><circle cx="118" cy="106" r="6"/><circle cx="126" cy="100" r="6"/><circle cx="132" cy="108" r="6"/><circle cx="124" cy="114" r="6"/><circle cx="125" cy="107" r="3.4" fill="#f0dfb0"/></g>
+      <g fill="#a57fb4" stroke="none"><circle cx="138" cy="132" r="5"/><circle cx="145" cy="127" r="5"/><circle cx="150" cy="134" r="5"/><circle cx="143" cy="139" r="5"/><circle cx="144" cy="133" r="2.6" fill="#f0dfb0"/></g>
+    </g></svg>
+  </div>
+  <div class="deco float corner" style="right:-1rem; top:-1rem; width:clamp(8rem, 22vw, 15rem); --r:180deg; color:#bda6e6; opacity:.7; animation-delay:2s" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M10 200C30 140 60 100 110 70"/><path d="M60 200c10-40 30-70 60-90"/>
+      <path d="M50 150c-14-4-22 2-26 14 14 4 22-2 26-14zM90 130c14-4 22 2 26 14-14 4-22-2-26-14z" fill="#5a3a8c" opacity=".9"/>
+      <g fill="#c48ad6" stroke="none"><circle cx="110" cy="62" r="7"/><circle cx="120" cy="55" r="7"/><circle cx="128" cy="65" r="7"/><circle cx="118" cy="72" r="7"/><circle cx="119" cy="64" r="4" fill="#f0dfb0"/></g>
+      <g fill="#bda6e6" stroke="none"><circle cx="118" cy="106" r="6"/><circle cx="126" cy="100" r="6"/><circle cx="132" cy="108" r="6"/><circle cx="124" cy="114" r="6"/><circle cx="125" cy="107" r="3.4" fill="#f0dfb0"/></g>
+    </g></svg>
+  </div>
+
+  </div>
+
+  <main class="page">
+    <div class="stage" id="petals">
+      <div class="reveal-lines">
+        <p class="whisper" data-reveal="600">There are 365 days in a year.</p>
+        <p class="whisper" data-reveal="2600">But today...</p>
+        <p class="whisper" data-reveal="4300">is a little more special.</p>
+      </div>
+
+      <div data-reveal="6400" class="reveal-slow">
+        <p class="eyebrow" style="margin-bottom:1rem">✦ &nbsp; ✦ &nbsp; ✦</p>
+        <h1 class="title big-name">Happy Birthday,<br>Anjali <span class="heart">💜</span></h1>
+      </div>
+
+      <div data-reveal="8200" style="margin-top:.4rem">
+        <span class="ribbon">welcome to your little corner of the internet</span>
+      </div>
+      <p class="lead" data-reveal="9200">I made this just for you.</p>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="index.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-next href="garden.html">Enter Your Little World <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // a soft sparkle when the name arrives, and a few drifting petals
+    document.querySelector(".big-name").closest("[data-reveal]").addEventListener("revealed", () => {
+      const r = document.querySelector(".big-name").getBoundingClientRect();
+      sparkleAt(r.left + r.width * .5, r.top + r.height * .5, 16);
+      setTimeout(() => sparkleAt(r.left + r.width * .2, r.top + r.height * .3, 8), 350);
+      setTimeout(() => sparkleAt(r.left + r.width * .8, r.top + r.height * .7, 8), 700);
+      driftParticles(document.querySelector(".page"), 14, "petal");
+    });
+  </script>
+</body>
+</html>

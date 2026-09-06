@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f0919">
+  <title>The Grand Finale · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night theme-final" data-transition="fade" data-manual-reveal>
+  <canvas class="sky" aria-hidden="true" data-density="1"></canvas>
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <main class="page">
+    <div class="stage stage--wide" style="gap:.6rem">
+      <p class="eyebrow" data-reveal="200">the last chapter</p>
+      <h1 class="title" data-reveal="700" id="headline" style="font-size:clamp(1.8rem,5vw,3.2rem)">I saved the biggest thing for last.</h1>
+      <p class="whisper" data-reveal="1800" id="ready">Ready?</p>
+
+      <!-- the theatre -->
+      <div class="theatre" id="theatre" data-reveal="1200" aria-label="A stage with purple curtains. Behind them, a birthday cake.">
+        <div class="theatre-glow" aria-hidden="true"></div>
+
+        <div class="cake-stage" id="cake-stage">
+          <svg id="cake" viewBox="0 0 420 470" role="img" aria-label="A three-tier lavender birthday cake with candles, decorated with flowers and gold details. It reads Happy Birthday Anjali.">
+            <defs>
+              <linearGradient id="tier" x1="0" x2="1"><stop offset="0" stop-color="#a98bd0"/><stop offset=".5" stop-color="#d3bfec"/><stop offset="1" stop-color="#9d7cc0"/></linearGradient>
+              <linearGradient id="tier2" x1="0" x2="1"><stop offset="0" stop-color="#8f6fb4"/><stop offset=".5" stop-color="#c3a8e3"/><stop offset="1" stop-color="#8460ad"/></linearGradient>
+              <linearGradient id="tier3" x1="0" x2="1"><stop offset="0" stop-color="#b79fd9"/><stop offset=".5" stop-color="#e2d3f4"/><stop offset="1" stop-color="#ab8fce"/></linearGradient>
+              <linearGradient id="cream" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#efe3f6"/></linearGradient>
+              <linearGradient id="goldg" x1="0" x2="1"><stop offset="0" stop-color="#b8975a"/><stop offset=".5" stop-color="#f0dfb0"/><stop offset="1" stop-color="#b8975a"/></linearGradient>
+              <radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fff9e6"/><stop offset=".4" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff8f3a" stop-opacity=".2"/></radialGradient>
+              <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd98a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
+              <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+            </defs>
+
+            <!-- cake stand -->
+            <ellipse cx="210" cy="452" rx="150" ry="12" fill="#2a1b45" opacity=".6"/>
+            <path d="M120 440h180l-12 10H132z" fill="url(#goldg)"/>
+            <rect x="196" y="410" width="28" height="30" fill="url(#goldg)"/>
+            <ellipse cx="210" cy="410" rx="170" ry="14" fill="url(#goldg)"/>
+            <ellipse cx="210" cy="406" rx="166" ry="11" fill="#f5e8c4"/>
+
+            <!-- tier 1 (bottom) -->
+            <path d="M60 300h300v96c0 10-67 18-150 18S60 406 60 396z" fill="url(#tier)"/>
+            <ellipse cx="210" cy="300" rx="150" ry="16" fill="#e2d3f4"/>
+            <!-- drip icing -->
+            <path d="M60 300c0 10 8 12 8 22s-8 14-8 24 10 10 10 20c0 6-2 10-2 14 40 6 90 10 142 10s102-4 142-10c0-4-2-8-2-14 0-10 10-10 10-20s-8-14-8-24 8-12 8-22z" fill="none"/>
+            <path d="M60 300v20c0 8 6 10 8 18 2 10-4 14-2 22 2 6 8 4 10 12 30 4 80 8 134 8s104-4 134-8c2-8 8-6 10-12 2-8-4-12-2-22 2-8 8-10 8-18v-20z" fill="url(#cream)" opacity=".95"/>
+            <path d="M120 320c-2 12 6 18 2 30M180 322c2 14-4 20 0 34M250 322c-2 16 6 22 0 36M310 320c2 12-6 18-2 30" fill="none" stroke="#f7f0e6" stroke-width="7" stroke-linecap="round" opacity=".95"/>
+            <!-- gold beads tier 1 -->
+            <g fill="url(#goldg)"><circle cx="70" cy="398" r="4"/><circle cx="100" cy="404" r="4"/><circle cx="135" cy="408" r="4"/><circle cx="175" cy="411" r="4"/><circle cx="210" cy="412" r="4"/><circle cx="245" cy="411" r="4"/><circle cx="285" cy="408" r="4"/><circle cx="320" cy="404" r="4"/><circle cx="350" cy="398" r="4"/></g>
+
+            <!-- tier 2 (middle) -->
+            <path d="M100 200h220v92c0 8-49 14-110 14s-110-6-110-14z" fill="url(#tier2)"/>
+            <ellipse cx="210" cy="200" rx="110" ry="12" fill="#e9dcf6"/>
+            <path d="M100 200v14c0 6 5 8 7 14 2 8-4 12-2 18 2 4 6 3 8 8 24 3 58 6 97 6s73-3 97-6c2-5 6-4 8-8 2-6-4-10-2-18 2-6 7-8 7-14v-14z" fill="url(#cream)" opacity=".95"/>
+            <!-- writing on the middle tier -->
+            <text x="210" y="250" text-anchor="middle" class="cake-text" font-size="19">HAPPY BIRTHDAY</text>
+            <text x="210" y="284" text-anchor="middle" class="cake-text-2" font-size="30" font-weight="600">Anjali</text>
+            <g fill="url(#goldg)"><circle cx="112" cy="290" r="3"/><circle cx="140" cy="297" r="3"/><circle cx="175" cy="302" r="3"/><circle cx="210" cy="304" r="3"/><circle cx="245" cy="302" r="3"/><circle cx="280" cy="297" r="3"/><circle cx="308" cy="290" r="3"/></g>
+
+            <!-- tier 3 (top) -->
+            <path d="M140 120h140v70c0 6-31 10-70 10s-70-4-70-10z" fill="url(#tier3)"/>
+            <ellipse cx="210" cy="120" rx="70" ry="9" fill="#f1e8f8"/>
+            <path d="M140 120v10c0 5 4 6 5 11 1 6-3 9-1 14 1 3 4 2 6 6 16 2 36 4 60 4s44-2 60-4c2-4 5-3 6-6 2-5-2-8-1-14 1-5 5-6 5-11v-10z" fill="url(#cream)" opacity=".95"/>
+            <path d="M150 128c4 0 6-3 10-3s6 3 10 3 6-3 10-3 6 3 10 3 6-3 10-3 6 3 10 3 6-3 10-3 6 3 10 3 6-3 10-3 6 3 10 3 6-3 10-3 6 3 10 3" fill="none" stroke="url(#goldg)" stroke-width="1.4"/>
+
+            <!-- sugar flowers -->
+            <g id="sugar-flowers">
+              <g transform="translate(88 300)"><g fill="#c48ad6"><circle r="7" cx="0" cy="-8"/><circle r="7" cx="8" cy="-2"/><circle r="7" cx="5" cy="8"/><circle r="7" cx="-5" cy="8"/><circle r="7" cx="-8" cy="-2"/></g><circle r="4" fill="#f0dfb0"/><path d="M-14 14c-8-2-12 3-14 8 6 2 12-1 14-8z" fill="#6f9c76"/></g>
+              <g transform="translate(332 296)"><g fill="#bda6e6"><circle r="7" cx="0" cy="-8"/><circle r="7" cx="8" cy="-2"/><circle r="7" cx="5" cy="8"/><circle r="7" cx="-5" cy="8"/><circle r="7" cx="-8" cy="-2"/></g><circle r="4" fill="#f0dfb0"/><path d="M14 14c8-2 12 3 14 8-6 2-12-1-14-8z" fill="#6f9c76"/></g>
+              <g transform="translate(126 202)"><g fill="#e6c9ec"><circle r="6" cx="0" cy="-7"/><circle r="6" cx="7" cy="-2"/><circle r="6" cx="4" cy="7"/><circle r="6" cx="-4" cy="7"/><circle r="6" cx="-7" cy="-2"/></g><circle r="3.4" fill="#d6b97c"/></g>
+              <g transform="translate(296 204)"><g fill="#c48ad6"><circle r="6" cx="0" cy="-7"/><circle r="6" cx="7" cy="-2"/><circle r="6" cx="4" cy="7"/><circle r="6" cx="-4" cy="7"/><circle r="6" cx="-7" cy="-2"/></g><circle r="3.4" fill="#f0dfb0"/></g>
+              <g transform="translate(160 122)"><g fill="#dccbf2"><circle r="5" cx="0" cy="-6"/><circle r="5" cx="6" cy="-2"/><circle r="5" cx="4" cy="6"/><circle r="5" cx="-4" cy="6"/><circle r="5" cx="-6" cy="-2"/></g><circle r="3" fill="#d6b97c"/></g>
+              <g transform="translate(262 124)"><g fill="#bda6e6"><circle r="5" cx="0" cy="-6"/><circle r="5" cx="6" cy="-2"/><circle r="5" cx="4" cy="6"/><circle r="5" cx="-4" cy="6"/><circle r="5" cx="-6" cy="-2"/></g><circle r="3" fill="#f0dfb0"/></g>
+              <!-- roses at base -->
+              <g transform="translate(210 392)"><circle r="12" fill="#a57fb4"/><path d="M0-12c7 0 12 5 12 12S7 12 0 12-12 7-12 0-7-12 0-12zm0 5c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z" fill="none" stroke="#e6c9ec" stroke-width="1.2"/></g>
+              <g transform="translate(150 388)"><circle r="9" fill="#c48ad6"/><path d="M0-9c5 0 9 4 9 9S5 9 0 9-9 5-9 0-5-9 0-9zm0 4c-3 0-5 2-5 5s2 5 5 5 5-2 5-5-2-5-5-5z" fill="none" stroke="#f0dfb0" stroke-width="1"/></g>
+              <g transform="translate(270 388)"><circle r="9" fill="#bda6e6"/><path d="M0-9c5 0 9 4 9 9S5 9 0 9-9 5-9 0-5-9 0-9zm0 4c-3 0-5 2-5 5s2 5 5 5 5-2 5-5-2-5-5-5z" fill="none" stroke="#f0dfb0" stroke-width="1"/></g>
+            </g>
+
+            <!-- candles (5) -->
+            <g id="candles"></g>
+          </svg>
+        </div>
+
+        <div class="valance" aria-hidden="true"></div>
+        <div class="curtain curtain--l" aria-hidden="true"></div>
+        <div class="curtain curtain--r" aria-hidden="true"></div>
+        <span class="tieback tieback--l" aria-hidden="true"></span>
+        <span class="tieback tieback--r" aria-hidden="true"></span>
+      </div>
+
+      <div id="open-wrap" data-reveal="2600">
+        <button class="btn btn-large btn-gold" id="open-curtains" type="button">Open the Curtains 🎀</button>
+      </div>
+
+      <div class="blow-controls" id="blow" hidden>
+        <p class="blow-hint" id="blow-hint">make a wish — then tap each flame to blow it out.</p>
+      </div>
+
+      <!-- celebration -->
+      <div class="finale-lines" id="celebration" hidden>
+        <h2 class="title" data-reveal="200">Happy Birthday, Anjali! 💜🎂</h2>
+        <p class="years" data-reveal="1600">5+ years and counting</p>
+        <p class="whisper" data-reveal="3000">More conversations.</p>
+        <p class="whisper" data-reveal="3900">More reels.</p>
+        <p class="whisper" data-reveal="4800">More laughs.</p>
+        <p class="whisper" data-reveal="5700">More random moments.</p>
+        <p class="whisper" data-reveal="6600">More memories.</p>
+        <h3 class="title-sm" data-reveal="8600">And hopefully one day...</h3>
+        <h3 class="title-sm" data-reveal="10000" style="color:var(--gold-2)">that first photo.</h3>
+      </div>
+
+      <!-- the quiet ending -->
+      <div id="quiet" hidden>
+        <div class="ps paper" data-reveal="400">
+          <span class="tape tape--top"></span>
+          <p>P.S.</p>
+          <p>If you actually made it all the way here...</p>
+          <p>I hope you smiled.</p>
+          <p>Even just once.</p>
+          <p>Because honestly...</p>
+          <p>that's all I wanted.</p>
+          <p style="margin-top:.8em">Happy Birthday, Anjali. 💜</p>
+          <p>I'm really glad I met you.</p>
+          <p class="ps-sign">— Your Best Friend, Pradeep</p>
+        </div>
+        <p class="hand" data-reveal="4200" style="font-size:1.2rem; color:var(--lavender); margin-top:1.4rem">(you can stay here as long as you like.)</p>
+        <a class="btn btn-ghost replay" href="index.html" data-reveal="6200">↺ read it again from the envelope</a>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="gift.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <span></span>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    (function () {
+      const reduce = window.__chapter.reduceMotion;
+      const theatre = document.getElementById("theatre");
+      const candlesG = document.getElementById("candles");
+      const ns = "http://www.w3.org/2000/svg";
+      const CANDLES = [150, 180, 210, 240, 270];
+      const colors = ["#c48ad6", "#f0dfb0", "#bda6e6", "#f0dfb0", "#c48ad6"];
+      let lit = CANDLES.length, opened = false, celebrated = false;
+
+      // ---- build candles -----------------------------------------
+      CANDLES.forEach((x, i) => {
+        const g = document.createElementNS(ns, "g");
+        g.setAttribute("class", "candle"); g.setAttribute("tabindex", "0"); g.setAttribute("role", "button");
+        g.setAttribute("aria-label", `Candle ${i + 1} — tap to blow out`);
+        const y = 118 - (i === 2 ? 6 : 0); // middle candle slightly taller
+        g.innerHTML = `
+          <ellipse class="flame-glow" cx="${x}" cy="${y - 52}" rx="22" ry="26" fill="url(#glow)" filter="url(#blur2)"/>
+          <rect x="${x - 5}" y="${y - 38}" width="10" height="42" rx="2" fill="${colors[i]}"/>
+          <path d="M${x - 5} ${y - 30}h10M${x - 5} ${y - 20}h10M${x - 5} ${y - 10}h10" stroke="rgba(90,58,140,.35)" stroke-width="1.2"/>
+          <rect x="${x - .8}" y="${y - 46}" width="1.6" height="9" fill="#3a2760"/>
+          <g class="flame">
+            <path d="M${x} ${y - 70}c6 8 8 14 8 20a8 8 0 01-16 0c0-6 2-12 8-20z" fill="url(#flame)"/>
+            <path d="M${x} ${y - 60}c3 4 4 7 4 10a4 4 0 01-8 0c0-3 1-6 4-10z" fill="#fff6dc" opacity=".9"/>
+          </g>
+          <path class="smoke" d="M${x} ${y - 46}c-4-6 4-10 0-16s4-10 0-16" fill="none" stroke="rgba(230,220,250,.7)" stroke-width="2" stroke-linecap="round"/>`;
+        const out = () => blowOut(g, x, y);
+        g.addEventListener("click", out);
+        g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); out(); } });
+        candlesG.appendChild(g);
+      });
+
+      function blowOut(g, x, y) {
+        if (!opened || g.classList.contains("is-out")) return;
+        g.classList.add("is-out"); g.setAttribute("aria-label", "Candle blown out");
+        lit--;
+        // glow particles in screen space
+        const pt = document.getElementById("cake").createSVGPoint(); pt.x = x; pt.y = y - 60;
+        const sp = pt.matrixTransform(document.getElementById("cake").getScreenCTM());
+        sparkleAt(sp.x, sp.y, 7);
+        document.getElementById("blow-hint").textContent = lit > 0 ? `${lit} left…` : "✨";
+        if (lit === 0) setTimeout(celebrate, 900);
+      }
+      function blowOutNext() { const c = candlesG.querySelector(".candle:not(.is-out)"); if (c) c.dispatchEvent(new Event("click")); }
+
+      // ---- open the curtains ---------------------------------------
+      window.addEventListener("load", () => setTimeout(() => revealSequence(), 200));
+      document.getElementById("open-curtains").addEventListener("click", () => {
+        if (opened) return; opened = true;
+        theatre.classList.add("is-open");
+        document.getElementById("open-wrap").style.display = "none";
+        document.getElementById("ready").style.display = "none";
+        document.getElementById("headline").textContent = "For you. Obviously.";
+        const r = theatre.getBoundingClientRect();
+        setTimeout(() => { sparkleAt(r.left + r.width * .5, r.top + r.height * .45, 16); sparkleAt(r.left + r.width * .3, r.top + r.height * .6, 8); sparkleAt(r.left + r.width * .7, r.top + r.height * .6, 8); }, reduce ? 400 : 2200);
+        setTimeout(() => { document.getElementById("blow").hidden = false; }, reduce ? 500 : 2600);
+      });
+
+      // ---- celebration ----------------------------------------------
+      let conf;
+      function celebrate() {
+        if (celebrated) return; celebrated = true;
+        document.body.classList.add("celebrate");
+        document.getElementById("blow").hidden = true;
+        // the birthday song: fade the ambient music down, play Happy Birthday, then bring the music back
+        try {
+          const song = new Audio(birthdayConfig.birthdaySong); song.volume = 0.9;
+          const bg = window.birthdayMusic;
+          const wasOn = bg && !bg.audio.paused;
+          if (wasOn) bg.fadeTo(0.04, 800);
+          const restore = () => { if (wasOn) bg.fadeTo(bg.targetVolume(), 2500); };
+          song.addEventListener("ended", restore);
+          song.play().catch(() => { if (wasOn) bg.fadeTo(birthdayConfig.musicVolume, 1500); });
+        } catch (e) {}
+        document.getElementById("headline").textContent = "You did it. 🎉";
+        conf = confetti(document.getElementById("confetti"), { duration: reduce ? 1500 : 9000 });
+        // relight the cake in celebration: sugar flowers sparkle
+        const sf = document.getElementById("sugar-flowers").querySelectorAll("g");
+        sf.forEach((f, i) => setTimeout(() => { const b = f.getBoundingClientRect(); sparkleAt(b.left + b.width / 2, b.top + b.height / 2, 5); }, 400 + i * 220));
+        const cel = document.getElementById("celebration"); cel.hidden = false;
+        const last = revealSequence(cel, { base: 400 });
+        setTimeout(() => cel.scrollIntoView({ behavior: "smooth", block: "center" }), 1200);
+        // settle down: the quiet ending
+        setTimeout(() => {
+          document.getElementById("confetti").classList.add("is-fading");
+          document.body.classList.remove("celebrate"); document.body.classList.add("calm");
+          const q = document.getElementById("quiet"); q.hidden = false;
+          revealSequence(q, { base: 800 });
+          setTimeout(() => q.scrollIntoView({ behavior: "smooth", block: "center" }), 1400);
+        }, last + (reduce ? 1500 : 5000));
+      }
+    })();
+  </script>
+</body>
+</html>

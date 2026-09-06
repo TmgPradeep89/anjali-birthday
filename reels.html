@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcf9f3">
+  <title>The Reel Corner · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-paper" data-transition="blur">
+  <div class="deco float" style="left:3vw; top:12vh; width:2.4rem; color:var(--gold); --r:8deg" data-doodle="star" aria-hidden="true"></div>
+  <div class="deco float" style="right:4vw; top:22vh; width:3rem; color:var(--mauve); --r:-6deg; animation-delay:2s" data-doodle="butterfly" aria-hidden="true"></div>
+  <div class="deco" style="left:2vw; bottom:8rem; width:clamp(4rem, 9vw, 6rem); color:var(--mauve); opacity:.6" data-doodle="flower" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="stage stage--top stage--wide">
+      <p class="eyebrow" data-reveal="200">chapter seven</p>
+      <h1 class="title" data-reveal="600" style="font-size:clamp(2rem,6vw,3.8rem)">Apparently, we speak Reel.</h1>
+      <p class="lead" data-reveal="1200">Almost three years of “watch this” — a small museum of the ones that stuck.</p>
+
+      <div class="reels" id="reels"></div>
+
+      <p class="reels-footnote" data-reveal-scroll>* a real conversation could be reconstructed from reels alone. no words needed.</p>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="five-years.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next" data-next href="photo-album.html">Keep Going <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // Reel cards are generated from birthdayConfig.reels — replace media paths there.
+    (function () {
+      const wrap = document.getElementById("reels");
+      const tilts = [-2, 1.5, -1, 2, -1.5, 1];
+      birthdayConfig.reels.forEach((r, i) => {
+        const card = document.createElement("article");
+        card.className = "reel-card";
+        card.style.setProperty("--r", tilts[i % tilts.length] + "deg");
+        card.setAttribute("data-reveal-scroll", "");
+        card.innerHTML = `
+          <div class="reel-phone">
+            <div class="frame" data-src="${r.media}" data-label="reel ${String(i + 1).padStart(2, "0")}" data-alt="${r.caption}">
+              <span class="reel-play" aria-hidden="true"></span>
+              <span class="reel-react" aria-hidden="true">${r.react}</span>
+              <div class="reel-meta">
+                <p class="reel-caption">${r.caption}</p>
+                <p class="reel-date">${r.date}</p>
+              </div>
+            </div>
+          </div>
+          <div class="reel-note sticky">${r.note}</div>`;
+        wrap.appendChild(card);
+        mountFrame(card.querySelector(".frame"));
+      });
+      // observe the new cards for scroll reveal
+      document.querySelectorAll(".reel-card").forEach((el, i) => { setTimeout(() => el.classList.add("is-shown"), 1400 + i * 160); });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24163a">
+  <title>The Memory That Isn't Here Yet · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night" data-transition="fade">
+  <canvas class="sky" aria-hidden="true" data-density=".9" data-fireflies="false"></canvas>
+
+  <main class="page">
+    <div class="stage">
+      <p class="eyebrow" data-reveal="200">chapter thirteen</p>
+
+      <figure class="polaroid polaroid--future future-frame" id="frame" data-reveal="800">
+        <span class="tape tape--top tape--gold"></span>
+        <div class="photo"><span class="stamp" id="stamp"></span></div>
+        <figcaption class="caption">Future Memory<small id="sub">developing…</small></figcaption>
+      </figure>
+
+      <div class="memory-lines">
+        <p class="whisper" data-reveal="3200">First meeting.</p>
+        <p class="whisper" data-reveal="4600">First photo.</p>
+        <p class="whisper" data-reveal="6000">First hug.</p>
+        <p class="whisper" data-reveal="8800" style="margin-top:1rem">Some memories take time to happen.</p>
+        <h2 class="title" data-reveal="11000">Maybe this one is still being written.</h2>
+        <p class="hand" data-reveal="13400" style="font-size:1.3rem; color:var(--lavender); margin-top:.6rem">no rush. the frame isn't going anywhere.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="wishes.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-next href="someday.html">Someday <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // the polaroid "develops": a warm glow slowly appears, but the picture stays empty on purpose
+    const frame = document.getElementById("frame");
+    frame.addEventListener("revealed", () => {
+      setTimeout(() => frame.classList.add("is-developing"), 800);
+      setTimeout(() => { document.getElementById("stamp").textContent = "[ future memory ]"; }, 5000);
+      setTimeout(() => { document.getElementById("sub").textContent = "still developing. worth the wait."; }, 9000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcf9f3">
+  <title>The Little Drawing · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-paper theme-notebook" data-transition="blur" data-manual-reveal>
+  <!-- washi tape on the notebook corners -->
+  <span class="tape tape--gold" style="position:fixed; top:1.4rem; left:-1.2rem; transform:rotate(-40deg); z-index:1" aria-hidden="true"></span>
+  <span class="tape" style="position:fixed; bottom:2rem; right:-1.2rem; transform:rotate(-40deg); z-index:1" aria-hidden="true"></span>
+
+  <main class="page">
+    <div class="stage" style="gap:.4rem">
+      <p class="eyebrow" data-reveal="200">a page from a notebook</p>
+      <p class="hand" style="font-size:1.35rem; color:var(--ink-soft)" data-reveal="700">you like drawing, so I tried. don't laugh.</p>
+
+      <div class="sketchbook" data-reveal="1100">
+        <svg id="sketch" viewBox="0 0 700 420" role="img" aria-label="A hand-drawn sketch: two stars far apart, a tiny game controller, a path connecting them, and flowers growing along the path.">
+          <!-- first star, left -->
+          <path class="stroke" data-speed="140" data-pause="600" d="M110 150 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/>
+          <!-- second star, right -->
+          <path class="stroke" data-speed="140" data-pause="600" d="M590 250 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/>
+          <!-- two points of light (tiny circles) -->
+          <circle class="stroke" data-speed="60" data-pause="80" cx="110" cy="174" r="4"/>
+          <circle class="stroke" data-speed="60" data-pause="700" cx="590" cy="274" r="4"/>
+          <!-- tiny symbolic controller in the middle -->
+          <g id="controller">
+            <path class="stroke" data-speed="120" data-pause="60" d="M322 196c-10 0-16 6-18 16l-6 30c-1 8 4 14 11 14 6 0 9-4 12-8l6-8h46l6 8c3 4 6 8 12 8 7 0 12-6 11-14l-6-30c-2-10-8-16-18-16z"/>
+            <path class="stroke" data-speed="90" data-pause="40" d="M334 214v16M326 222h16"/>
+            <circle class="stroke" data-speed="50" data-pause="30" cx="374" cy="216" r="2.5"/>
+            <circle class="stroke" data-speed="50" data-pause="900" cx="384" cy="226" r="2.5"/>
+          </g>
+          <!-- the wandering path connecting the two stars -->
+          <path class="stroke" id="path" data-speed="220" data-pause="500" stroke-dasharray="6 8" d="M132 172 C 190 190, 230 250, 300 236 S 400 200, 440 240 S 520 300, 566 272"/>
+          <!-- flowers along the path -->
+          <g id="flowers" style="color:#8a68c2">
+            <path class="stroke" data-group="f1" data-speed="120" d="M200 224v-30"/>
+            <path class="stroke" data-group="f1" data-speed="120" d="M200 194c-6-2-8-8-6-14 6 2 8 8 6 14zM200 194c6-2 8-8 6-14-6 2-8 8-6 14zM200 194c-7 1-12-3-13-9 7-1 12 3 13 9zM200 194c7 1 12-3 13-9-7-1-12 3-13 9z"/>
+            <path class="stroke" data-group="f1" data-speed="120" data-pause="250" d="M200 214c-8-3-13 1-15 7 8 2 13-1 15-7z"/>
+
+            <path class="stroke" data-group="f2" data-speed="120" d="M470 258v-34"/>
+            <circle class="stroke" data-group="f2" data-speed="120" cx="470" cy="216" r="4"/>
+            <path class="stroke" data-group="f2" data-speed="140" data-pause="250" d="M470 212c0-8 3-11 6-11s6 3 6 11M470 212c0-8-3-11-6-11s-6 3-6 11M470 220c0 8 3 11 6 11s6-3 6-11M470 220c0 8-3 11-6 11s-6-3-6-11M470 216c8 0 11-3 11-6s-3-6-11-6M470 216c-8 0-11-3-11-6s3-6 11-6M470 216c8 0 11 3 11 6s-3 6-11 6M470 216c-8 0-11 3-11 6s3 6 11 6"/>
+
+            <path class="stroke" data-group="f3" data-speed="120" d="M300 300v-40"/>
+            <path class="stroke" data-group="f3" data-speed="140" d="M290 252c0-10 5-16 10-16s10 6 10 16c0 8-5 12-10 12s-10-4-10-12z"/>
+            <path class="stroke" data-group="f3" data-speed="120" data-pause="250" d="M300 285c8-3 13 1 15 7-8 2-13-1-15-7z"/>
+
+            <path class="stroke" data-group="f4" data-speed="120" d="M540 300v-22"/>
+            <path class="stroke" data-group="f4" data-speed="140" data-pause="300" d="M540 278c-5 0-8-4-8-8s3-8 8-8 8 4 8 8-3 8-8 8zM534 268l-6-6M546 268l6-6M540 262v-8"/>
+          </g>
+          <!-- tiny sparkles & hearts near the stars (drawn last) -->
+          <path class="stroke" data-speed="90" data-pause="40" d="M80 120v-12M74 114h12"/>
+          <path class="stroke" data-speed="90" data-pause="40" d="M630 210v-12M624 204h12"/>
+          <path class="stroke" data-speed="120" data-pause="200" d="M350 150c-3-4-9-3-9 2 0 4 5 7 9 11 4-4 9-7 9-11 0-5-6-6-9-2z"/>
+          <!-- soft fills that fade in after strokes -->
+          <g class="fill-after" style="opacity:0" fill="#f0dfb0" data-opacity=".85"><path d="M110 150 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/><path d="M590 250 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/></g>
+          <g class="fill-after" style="opacity:0" fill="#c48ad6" data-opacity=".35"><circle cx="200" cy="190" r="9"/><circle cx="470" cy="216" r="11"/><ellipse cx="300" cy="250" rx="9" ry="12"/><circle cx="540" cy="270" r="7"/></g>
+          <g class="fill-after" style="opacity:0" fill="#c48ad6" data-opacity=".5"><path d="M350 150c-3-4-9-3-9 2 0 4 5 7 9 11 4-4 9-7 9-11 0-5-6-6-9-2z"/></g>
+        </svg>
+        <!-- handwritten annotations that appear with the drawing -->
+        <span class="hand" id="ann1" style="position:absolute; left:4%; top:14%; font-size:1.15rem; color:var(--ink-soft); opacity:0; transition:opacity 1s">me, somewhere</span>
+        <span class="hand" id="ann2" style="position:absolute; right:3%; top:76%; font-size:1.15rem; color:var(--ink-soft); opacity:0; transition:opacity 1s">you, somewhere else</span>
+        <span class="hand" id="ann3" style="position:absolute; left:50%; top:70%; transform:translateX(-50%); font-size:1.05rem; color:var(--ink-soft); opacity:0; transition:opacity 1s; white-space:nowrap">one random game →</span>
+      </div>
+
+      <div class="sketch-caption" style="min-height:5.4rem; margin-top:.4rem">
+        <p id="cap1" style="opacity:0; transform:translateY(6px); transition:opacity 1.4s var(--ease), transform 1.4s var(--ease)">Sometimes the best stories start <em>completely by accident.</em></p>
+        <p id="cap2" class="accent" style="opacity:0; transform:translateY(6px); transition:opacity 1.4s var(--ease), transform 1.4s var(--ease); margin-top:.3rem">Ours did.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="garden.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-manual data-next href="origin.html">Our Story <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    window.addEventListener("load", async () => {
+      setTimeout(() => revealSequence(), 200);
+      const svg = document.getElementById("sketch");
+      const show = id => document.getElementById(id).style.opacity = 1;
+      await new Promise(r => setTimeout(r, window.__chapter.reduceMotion ? 300 : 2200));
+      // annotations appear as the matching strokes finish
+      const strokes = [...svg.querySelectorAll(".stroke")];
+      strokes[0].addEventListener("drawn", () => show("ann1"));
+      strokes[1].addEventListener("drawn", () => show("ann2"));
+      svg.querySelector("#controller .stroke").addEventListener("drawn", () => show("ann3"));
+      await drawStrokes(svg, { speed: 150 });
+      fillAfter(svg, 200);
+      const c1 = document.getElementById("cap1"), c2 = document.getElementById("cap2");
+      setTimeout(() => { c1.style.opacity = 1; c1.style.transform = "none"; }, 600);
+      setTimeout(() => { c2.style.opacity = 1; c2.style.transform = "none"; }, 2400);
+      setTimeout(showNext, 3600);
+    });
+  </script>
+</body>
+</html>

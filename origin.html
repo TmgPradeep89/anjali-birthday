@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcf9f3">
+  <title>How It All Started · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-paper" data-transition="petals">
+  <div class="deco" style="right:2vw; top:4rem; width:clamp(5rem, 12vw, 9rem); color:var(--mauve); opacity:.7" data-doodle="vine" aria-hidden="true"></div>
+  <div class="deco float" style="left:3vw; top:30vh; width:2.2rem; color:var(--gold); --r:12deg" data-doodle="star" aria-hidden="true"></div>
+  <div class="deco float" style="right:5vw; bottom:20vh; width:3.6rem; color:var(--mauve); --r:-8deg; animation-delay:1.4s" data-doodle="butterfly" aria-hidden="true"></div>
+  <div class="deco" style="left:4vw; bottom:6rem; width:clamp(3rem, 8vw, 5rem); color:var(--violet); opacity:.6" data-doodle="flower" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="stage stage--top">
+      <p class="eyebrow" data-reveal="200">chapter five</p>
+      <h1 class="title" data-reveal="600" style="font-size:clamp(2rem,5.6vw,3.6rem)">How it all started.</h1>
+      <p class="hand" data-reveal="1200" style="font-size:1.35rem; color:var(--ink-soft)">(spoiler: nobody planned any of this)</p>
+
+      <div class="timeline">
+        <div class="timeline-path" aria-hidden="true">
+          <svg viewBox="0 0 100 1000" preserveAspectRatio="none"><path id="tl-line" class="stroke" d="M50 0 C 20 120, 80 220, 50 340 S 20 560, 50 680 S 80 900, 50 1000" stroke-dasharray="5 9" stroke-width="1.6"/></svg>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">Then</div>
+          <div class="tl-card paper" style="--r:-2deg">
+            <span class="tape tape--tl"></span>
+            One completely random game.
+            <span class="ml-tag">✦ a Mobile Legends lobby, of all places</span>
+            <span class="tl-doodle" data-doodle="star"></span>
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">Somehow</div>
+          <div class="tl-card paper" style="--r:1.5deg">
+            <span class="tape tape--tr tape--gold"></span>
+            Two people met.
+            <span class="hand" style="display:block; font-size:1rem; color:var(--ink-soft); margin-top:.3rem">(who had no idea this was the start of anything)</span>
+            <span class="tl-doodle" data-doodle="heart"></span>
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">Then</div>
+          <div class="tl-card paper" style="--r:-1deg">
+            <span class="tape tape--top"></span>
+            A conversation happened.
+            <span class="tl-doodle" data-doodle="envelope"></span>
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">Then</div>
+          <div class="tl-card sticky" style="--r:2deg">
+            Another one.
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">And</div>
+          <div class="tl-card scrap--torn paper" style="--r:-1.5deg">
+            Another.
+            <span class="hand" style="display:block; font-size:1rem; color:var(--ink-soft); margin-top:.3rem">and another. and another. you get it.</span>
+            <span class="tl-doodle" data-doodle="arrow"></span>
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+
+        <div class="tl-item" data-reveal-scroll>
+          <div class="tl-when">And somehow...</div>
+          <div class="tl-card paper" style="--r:1deg">
+            <span class="tape tape--tl"></span>
+            More than five years passed.
+            <span class="tl-doodle" data-doodle="flower"></span>
+          </div>
+          <span class="tl-dot"></span>
+        </div>
+      </div>
+
+      <div class="tl-finale" data-reveal-scroll>
+        <div class="divider">✦</div>
+        <div class="years">5<span style="color:var(--gold)">+</span> years<small>from one accidental hello</small></div>
+        <p class="hand" style="font-size:1.4rem; color:var(--ink-soft); margin-top:1rem; max-width:30ch; margin-inline:auto">The game was the coincidence. Everything after it was on purpose.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="drawing.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next" data-next href="five-years.html">And Then We Kept Talking <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // the dotted path draws itself as you scroll down the story
+    window.addEventListener("load", () => {
+      const line = document.getElementById("tl-line");
+      drawStrokes(line.parentElement, { speed: 90, delay: 800 });
+    });
+  </script>
+</body>
+</html>

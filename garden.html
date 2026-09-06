@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24163a">
+  <title>The Purple Garden · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night theme-garden" data-transition="petals">
+  <canvas class="sky" aria-hidden="true"></canvas>
+  <div class="moon" style="top:7%; left:12%;" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="stage stage--wide" style="gap:.6rem">
+      <p class="eyebrow" data-reveal="200">chapter three</p>
+      <h1 class="title" data-reveal="600" style="font-size:clamp(1.8rem,5vw,3.2rem)">A garden that only opens at night.</h1>
+      <p class="garden-hint" data-reveal="1400">tap the flowers — each one is holding something &nbsp;·&nbsp; <span class="garden-count" id="count">0 of 8 found</span></p>
+
+      <div class="garden" id="garden" data-reveal="1000" aria-label="A moonlit purple garden with clickable flowers">
+        <div class="garden-ground" aria-hidden="true"></div>
+        <!-- flowers get planted here by script -->
+      </div>
+
+      <div class="garden-note" id="note" role="status" aria-live="polite"></div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="birthday.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next" data-next href="drawing.html">Turn the Page <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    (function () {
+      const garden = document.getElementById("garden");
+      const note = document.getElementById("note");
+      const count = document.getElementById("count");
+      const msgs = birthdayConfig.gardenMessages;
+      const palettes = [
+        ["#c48ad6", "#a57fb4", "#f0dfb0"], ["#bda6e6", "#8f6fb4", "#fcf9f3"], ["#dccbf2", "#a57fb4", "#f0dfb0"],
+        ["#9d7cc0", "#5a3a8c", "#f0dfb0"], ["#e6c9ec", "#c48ad6", "#f0dfb0"], ["#b799cf", "#7452a8", "#fcf9f3"],
+        ["#c9a7de", "#8a68c2", "#f0dfb0"], ["#d6b5e8", "#9d7cc0", "#f0dfb0"]
+      ];
+      // x%, bottom%, width(rem), kind, delay
+      const spots = [
+        { x: 8,  b: 20, w: 4.4, kind: "daisy", d: 0 },
+        { x: 21, b: 12, w: 5.6, kind: "rose", d: .8 },
+        { x: 34, b: 24, w: 4.0, kind: "tulip", d: 1.6 },
+        { x: 47, b: 10, w: 6.2, kind: "daisy", d: .4 },
+        { x: 60, b: 22, w: 4.6, kind: "bell", d: 2.1 },
+        { x: 72, b: 13, w: 5.4, kind: "rose", d: 1.2 },
+        { x: 84, b: 25, w: 4.2, kind: "tulip", d: 2.8 },
+        { x: 94, b: 15, w: 4.8, kind: "daisy", d: 1.9 }
+      ];
+      const heads = {
+        daisy: (p) => { let s = ""; for (let i = 0; i < 8; i++) s += `<ellipse cx="50" cy="30" rx="7" ry="16" fill="${p[0]}" stroke="${p[1]}" stroke-width=".8" transform="rotate(${i * 45} 50 30)" opacity=".95"/>`; return s + `<circle cx="50" cy="30" r="7" fill="${p[2]}"/><circle cx="50" cy="30" r="3" fill="${p[1]}" opacity=".5"/>`; },
+        rose: (p) => `<circle cx="50" cy="30" r="20" fill="${p[0]}"/><path d="M50 12c10 0 18 8 18 18s-8 18-18 18-18-8-18-18 8-18 18-18zm0 6c-7 0-12 5-12 12s5 12 12 12 12-5 12-12-5-12-12-12zm0 6c4 0 6 2 6 6s-2 6-6 6-6-2-6-6 2-6 6-6z" fill="none" stroke="${p[1]}" stroke-width="1.3" opacity=".9"/><path d="M40 30c2-8 8-12 14-10" fill="none" stroke="${p[2]}" stroke-width="1.2" opacity=".8"/>`,
+        tulip: (p) => `<path d="M32 40c0-16 6-26 18-30 12 4 18 14 18 30 0 8-8 12-18 12s-18-4-18-12z" fill="${p[0]}" stroke="${p[1]}" stroke-width="1"/><path d="M50 10c-6 10-6 22-4 40M50 10c6 10 6 22 4 40" fill="none" stroke="${p[1]}" stroke-width="1" opacity=".7"/><path d="M36 20l-4-8M64 20l4-8" stroke="${p[2]}" stroke-width="1.2" stroke-linecap="round"/>`,
+        bell: (p) => { let s = ""; [[50, 14], [40, 30], [60, 30], [50, 46]].forEach(([x, y]) => s += `<path d="M${x - 8} ${y - 8}c0-6 4-9 8-9s8 3 8 9c0 5-3 8-8 12-5-4-8-7-8-12z" fill="${p[0]}" stroke="${p[1]}" stroke-width=".9"/><circle cx="${x}" cy="${y + 2}" r="1.5" fill="${p[2]}"/>`); return s; }
+      };
+      function flowerSVG(kind, p) {
+        return `<svg viewBox="0 0 100 160" aria-hidden="true">
+          <g class="stem-group">
+            <path d="M50 158C48 130 52 100 50 56" fill="none" stroke="#6e9b74" stroke-width="3" stroke-linecap="round"/>
+            <path d="M50 120c-14-4-22 2-26 12 12 3 22-2 26-12z" fill="#5f8a66" opacity=".95"/>
+            <path d="M50 100c14-4 22 2 26 12-12 3-22-2-26-12z" fill="#6f9c76" opacity=".95"/>
+            <g class="head" transform="translate(0 20)">${heads[kind](p)}</g>
+          </g></svg>`;
+      }
+      const found = new Set();
+      spots.forEach((s, i) => {
+        const b = document.createElement("button");
+        b.className = "flower"; b.type = "button";
+        b.style.cssText = `--x:${s.x}%; --b:${s.b}%; --w:${s.w}rem; --d:${s.d}s; z-index:${Math.round(30 - s.b)}`;
+        b.setAttribute("aria-label", `Flower ${i + 1}`);
+        b.innerHTML = flowerSVG(s.kind, palettes[i % palettes.length]);
+        b.addEventListener("click", e => bloom(b, i, e));
+        garden.appendChild(b);
+      });
+      // ambient petals
+      driftParticles(garden, 10, "petal");
+
+      function bloom(b, i, e) {
+        b.classList.add("is-found");
+        note.classList.remove("is-shown");
+        setTimeout(() => { note.textContent = msgs[i % msgs.length]; note.classList.add("is-shown"); }, 250);
+        if (!found.has(i)) { found.add(i); count.textContent = `${found.size} of ${spots.length} found`; }
+        const r = b.getBoundingClientRect();
+        const cx = r.left + r.width / 2, cy = r.top + r.height * .25;
+        const fx = i % 4;
+        if (fx === 0) butterfly(cx, cy);
+        else if (fx === 1) sparkleAt(cx, cy, 12);
+        else if (fx === 2) petals(cx, cy);
+        else star(cx, cy);
+        if (found.size === spots.length) setTimeout(() => { note.textContent = "That's all of them. But honestly? There are a lot more reasons than eight. 💜"; }, 2800);
+      }
+      function butterfly(x, y) {
+        if (window.__chapter.reduceMotion) return;
+        const el = document.createElement("div"); el.className = "fx-butterfly";
+        el.style.cssText = `position:fixed; left:${x}px; top:${y}px; color:#f0dfb0; z-index:50; transform:translate(-50%,-50%)`;
+        el.innerHTML = doodles.butterfly("#e8d3f5");
+        document.body.appendChild(el);
+        const dir = Math.random() < .5 ? -1 : 1;
+        el.animate([
+          { transform: "translate(-50%,-50%) scale(.6)", opacity: 0 }, { opacity: 1, offset: .1 },
+          { transform: `translate(calc(-50% + ${dir * 60}px), calc(-50% - 90px)) rotate(${dir * 10}deg) scale(1)`, offset: .45 },
+          { transform: `translate(calc(-50% + ${dir * 40}px), calc(-50% - 190px)) rotate(${-dir * 8}deg)`, offset: .75 },
+          { transform: `translate(calc(-50% + ${dir * 120}px), calc(-50% - 320px)) scale(.7)`, opacity: 0 }
+        ], { duration: 4200, easing: "cubic-bezier(.4,.1,.5,1)" }).onfinish = () => el.remove();
+      }
+      function petals(x, y) {
+        if (window.__chapter.reduceMotion) return;
+        for (let i = 0; i < 9; i++) {
+          const s = document.createElement("span"); s.className = "fx-petal";
+          s.style.cssText = `position:fixed; left:${x}px; top:${y}px; z-index:50`;
+          document.body.appendChild(s);
+          const dx = (Math.random() - .5) * 160, dy = 60 + Math.random() * 140;
+          s.animate([{ transform: "translate(-50%,-50%) rotate(0)", opacity: 1 }, { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(${Math.random() * 300}deg)`, opacity: 0 }], { duration: 1800 + Math.random() * 1200, easing: "cubic-bezier(.3,.6,.4,1)" }).onfinish = () => s.remove();
+        }
+      }
+      function star(x, y) {
+        if (window.__chapter.reduceMotion) return;
+        const s = document.createElement("div");
+        s.style.cssText = `position:fixed; left:${x}px; top:${y}px; width:26px; color:#f0dfb0; z-index:50; filter:drop-shadow(0 0 6px rgba(240,223,176,.9))`;
+        s.innerHTML = doodles.star("#f0dfb0");
+        document.body.appendChild(s);
+        s.animate([{ transform: "translate(-50%,-50%) scale(0) rotate(0)", opacity: 0 }, { transform: "translate(-50%,-140%) scale(1.2) rotate(180deg)", opacity: 1, offset: .5 }, { transform: "translate(-50%,-260%) scale(.4) rotate(360deg)", opacity: 0 }], { duration: 2600, easing: "ease-out" }).onfinish = () => s.remove();
+      }
+    })();
+  </script>
+</body>
+</html>

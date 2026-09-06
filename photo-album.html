@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24163a">
+  <title>The Album We Don't Have Yet · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night theme-album" data-transition="fade">
+  <canvas class="sky" aria-hidden="true" data-density=".7" data-fireflies="false"></canvas>
+
+  <main class="page">
+    <div class="stage stage--top">
+      <p class="eyebrow" data-reveal="200">chapter eight</p>
+      <h1 class="title" data-reveal="600" style="font-size:clamp(1.9rem,5.4vw,3.4rem)">The photo album we don't have yet.</h1>
+
+      <div class="album" data-reveal="1200">
+        <span class="tape tape--tl tape--gold" style="top:-.4rem; left:-.6rem"></span>
+        <span class="tape tape--tr tape--gold" style="top:-.4rem; right:-.6rem"></span>
+        <p class="album-title">Anjali &amp; me — vol. 1</p>
+        <div class="album-grid">
+          <figure class="polaroid" style="--r:-3deg" data-reveal="1600">
+            <div class="photo"><span class="stamp">not taken yet</span></div>
+            <figcaption class="caption">Our First Photo Together<small>Not taken yet.</small></figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:2deg" data-reveal="2100">
+            <div class="photo"><span class="stamp">still waiting</span></div>
+            <figcaption class="caption">Our First Day Hanging Out<small>Still waiting to happen.</small></figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:-1.5deg" data-reveal="2600">
+            <div class="photo"><span class="stamp">reserved</span></div>
+            <figcaption class="caption">That First Hug<small>Reserved.</small></figcaption>
+          </figure>
+          <figure class="polaroid" style="--r:2.5deg" data-reveal="3100">
+            <div class="photo"><span class="stamp">someday…</span></div>
+            <figcaption class="caption">The One We'll Retake 47 Times<small>Coming someday... hopefully.</small></figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="album-lines">
+        <p class="whisper" data-reveal="4600">We've known each other for more than five years...</p>
+        <p class="whisper" data-reveal="6400">and somehow...</p>
+        <p class="whisper" data-reveal="7800">we still don't have a single photo together.</p>
+        <p class="whisper" data-reveal="10400" style="margin-top:1rem">Maybe that's okay.</p>
+        <p class="whisper" data-reveal="11800">Maybe it just means...</p>
+        <h2 class="title" data-reveal="13400" class="reveal-slow">Our favorite memory hasn't happened yet.</h2>
+      </div>
+
+      <figure class="polaroid polaroid--future" style="--r:-2deg; margin-top:1.6rem" data-reveal="15200">
+        <div class="photo"><span class="stamp">[ future memory ]</span></div>
+        <figcaption class="caption">reserved for us<small>date: tbd · place: tbd</small></figcaption>
+      </figure>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="reels.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-next href="distance.html">Maybe Someday <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // gently scroll each line into view as it appears (long pages on phones)
+    document.querySelectorAll(".album-lines [data-reveal], .polaroid--future").forEach(el => {
+      el.addEventListener("revealed", () => el.scrollIntoView({ behavior: window.__chapter.reduceMotion ? "auto" : "smooth", block: "center" }));
+    });
+  </script>
+</body>
+</html>

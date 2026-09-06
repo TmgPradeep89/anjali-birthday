@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1e9f8">
+  <title>The Gift · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-paper theme-gift" data-transition="stars" data-manual-reveal>
+  <div class="deco float" style="left:6vw; top:14vh; width:2.4rem; color:var(--gold); --r:6deg" data-doodle="star" aria-hidden="true"></div>
+  <div class="deco float" style="right:6vw; top:20vh; width:3.4rem; color:var(--mauve); --r:-8deg; animation-delay:1.5s" data-doodle="butterfly" aria-hidden="true"></div>
+  <div class="deco" style="left:2vw; bottom:6rem; width:clamp(4rem, 9vw, 6rem); color:var(--mauve); opacity:.6" data-doodle="flower" aria-hidden="true"></div>
+  <div class="deco" style="right:2vw; bottom:9rem; width:clamp(4rem, 9vw, 6rem); color:var(--mauve); opacity:.6; transform:scaleX(-1)" data-doodle="flower" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="stage">
+      <p class="eyebrow" data-reveal="200">chapter fifteen</p>
+      <h1 class="title" data-reveal="600" style="font-size:clamp(2rem,5.6vw,3.6rem)">One last surprise.</h1>
+
+      <div class="gift-scene" data-reveal="1200">
+        <button class="gift" id="gift" type="button" aria-label="Open the gift">
+          <span class="gift-glow" aria-hidden="true"></span>
+          <span class="gift-box" aria-hidden="true"></span>
+          <span class="gift-lid" aria-hidden="true"></span>
+          <span class="gift-bow" aria-hidden="true">
+            <svg viewBox="0 0 120 70"><g fill="none" stroke="#b8975a" stroke-width="1.2">
+              <path d="M60 40C40 10 10 14 14 34c3 14 30 12 46 6z" fill="#e6cf95"/><path d="M60 40c20-30 50-26 46-6-3 14-30 12-46 6z" fill="#e6cf95"/>
+              <path d="M60 40c-16 6-22 20-14 28 10-4 16-14 14-28z" fill="#d6b97c"/><path d="M60 40c16 6 22 20 14 28-10-4-16-14-14-28z" fill="#d6b97c"/>
+              <circle cx="60" cy="40" r="7" fill="#f0dfb0"/>
+            </g></svg>
+          </span>
+        </button>
+      </div>
+      <p class="gift-hint" id="hint" data-reveal="2000">tap the box. go on.</p>
+
+      <div class="gift-lines" id="lines">
+        <p class="whisper" data-reveal="300" style="color:var(--ink-soft)">Your present is...</p>
+        <h2 class="title me" data-reveal="2600">ME. 😂</h2>
+        <div class="subscription paper" data-reveal="4400">
+          <span class="stamp-approved">approved</span>
+          <div class="sub-title">Lifetime Best Friend Subscription™</div>
+          <ul>
+            <li>No cancellation.</li>
+            <li>No refunds.</li>
+            <li>Unfortunately, you're stuck with me.</li>
+            <li style="font-size:1rem; color:var(--ink-soft)">*includes unlimited reels. terms non-negotiable.</li>
+          </ul>
+        </div>
+        <p class="whisper" data-reveal="7800" style="margin-top:1.2rem; color:var(--ink-soft)">But seriously...</p>
+        <p class="lead" data-reveal="9400">I hope this little corner of the internet made you smile.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="someday.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-manual data-next href="final.html">There's One More Thing <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    (function () {
+      const stage = document.querySelector(".stage"), lines = document.getElementById("lines"), gift = document.getElementById("gift");
+      window.addEventListener("load", () => setTimeout(() => {
+        // reveal intro pieces only (not the lines inside the box)
+        [...stage.querySelectorAll("[data-reveal]")].filter(el => !lines.contains(el)).forEach(el => setTimeout(() => el.classList.add("is-shown"), Number(el.dataset.reveal)));
+      }, 200));
+      gift.addEventListener("click", () => {
+        if (gift.classList.contains("is-open")) return;
+        gift.classList.add("is-open"); gift.disabled = true;
+        const r = gift.getBoundingClientRect();
+        sparkleAt(r.left + r.width / 2, r.top + r.height * .35, 18);
+        setTimeout(() => sparkleAt(r.left + r.width * .3, r.top + r.height * .3, 8), 300);
+        setTimeout(() => sparkleAt(r.left + r.width * .7, r.top + r.height * .25, 8), 600);
+        document.getElementById("hint").style.opacity = 0;
+        const last = revealSequence(lines, { base: 800 });
+        setTimeout(() => lines.scrollIntoView({ behavior: "smooth", block: "nearest" }), 1200);
+        setTimeout(showNext, last + 1600);
+      });
+    })();
+  </script>
+</body>
+</html>

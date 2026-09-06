@@ -1,0 +1,21 @@
+# Netlify settings for Anjali's birthday site (static, no build step)
+[build]
+  publish = "."
+  command = ""
+
+# Keep "birthday.html" style links exactly as written (no /birthday rewriting).
+[build.processing]
+  skip_processing = true
+[build.processing.html]
+  pretty_urls = false
+
+# Let replaced photos show up right away instead of being cached for a long time.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=600, must-revalidate"
+
+[[headers]]
+  for = "/music/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

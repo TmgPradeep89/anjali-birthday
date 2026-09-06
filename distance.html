@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#150d22">
+  <title>Distance · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night" data-transition="stars" style="background: radial-gradient(90% 60% at 50% 50%, #3a2560, #150d22 80%);">
+  <canvas class="sky" aria-hidden="true" data-density="1.8" data-fireflies="false"></canvas>
+
+  <main class="page">
+    <div class="stage stage--wide" style="gap:.4rem">
+      <p class="eyebrow" data-reveal="200">chapter nine</p>
+
+      <div class="distance-sky" data-reveal="600" aria-label="Two glowing stars on opposite sides of a purple sky, slowly connected by a constellation">
+        <svg id="constellation" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true">
+          <defs><filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter></defs>
+          <g id="lines" stroke="#dccbf2" fill="none"></g>
+          <g id="dots"></g>
+        </svg>
+        <span class="pole pole--l" aria-hidden="true"></span>
+        <span class="pole pole--r" aria-hidden="true"></span>
+        <span class="pole-label pole-label--l">here</span>
+        <span class="pole-label pole-label--r">there</span>
+      </div>
+
+      <div class="distance-lines">
+        <p class="whisper" data-reveal="1800">Somewhere between here and there...</p>
+        <p class="whisper" data-reveal="4400">Different places.</p>
+        <p class="whisper" data-reveal="5600">Different lives.</p>
+        <p class="whisper" data-reveal="6800">Different days.</p>
+        <p class="whisper" data-reveal="9200" style="margin-top:.8rem">And somehow...</p>
+        <h2 class="title" data-reveal="10800" style="font-size:clamp(1.9rem,5.4vw,3.4rem)">still friends.</h2>
+        <p class="hand" data-reveal="13000" style="font-size:1.35rem; color:var(--lavender); margin-top:.6rem">turns out distance is just a longer kind of nearby.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="photo-album.html">← Back</a>
+      <span class="chapter" data-chapter></span>
+      <a class="btn nav-next is-waiting" data-next href="letter.html">There's Something I Want You to Read <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // A constellation that slowly draws itself from the left star to the right one.
+    (function () {
+      const svg = document.getElementById("constellation");
+      const gl = document.getElementById("lines"), gd = document.getElementById("dots");
+      const mobile = innerWidth < 480;
+      const x0 = mobile ? 100 : 70, x1 = mobile ? 900 : 930;
+      // wandering points between the two stars
+      const pts = [[x0, 200]];
+      const n = 9;
+      for (let i = 1; i < n; i++) {
+        const t = i / n;
+        pts.push([x0 + (x1 - x0) * t + (Math.random() - .5) * 40, 200 + Math.sin(t * Math.PI * 2.2) * 90 + (Math.random() - .5) * 60]);
+      }
+      pts.push([x1, 200]);
+      const ns = "http://www.w3.org/2000/svg";
+      pts.forEach(([x, y], i) => {
+        if (i === 0 || i === pts.length - 1) return;
+        const c = document.createElementNS(ns, "circle");
+        c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 2.6); c.setAttribute("class", "const-dot");
+        gd.appendChild(c);
+      });
+      for (let i = 0; i < pts.length - 1; i++) {
+        const l = document.createElementNS(ns, "line");
+        l.setAttribute("x1", pts[i][0]); l.setAttribute("y1", pts[i][1]); l.setAttribute("x2", pts[i + 1][0]); l.setAttribute("y2", pts[i + 1][1]);
+        l.setAttribute("class", "stroke const-line"); l.setAttribute("data-speed", "90"); l.setAttribute("data-pause", "300");
+        l.setAttribute("vector-effect", "non-scaling-stroke");
+        gl.appendChild(l);
+      }
+      // a few faint extra constellations for depth
+      for (let k = 0; k < 4; k++) {
+        const bx = 150 + Math.random() * 700, by = 40 + Math.random() * 320;
+        for (let j = 0; j < 3; j++) {
+          const l = document.createElementNS(ns, "line");
+          const ax = bx + (Math.random() - .5) * 90, ay = by + (Math.random() - .5) * 60;
+          l.setAttribute("x1", ax); l.setAttribute("y1", ay); l.setAttribute("x2", ax + (Math.random() - .5) * 80); l.setAttribute("y2", ay + (Math.random() - .5) * 60);
+          l.setAttribute("stroke", "rgba(220,203,242,.18)"); l.setAttribute("vector-effect", "non-scaling-stroke");
+          gl.appendChild(l);
+        }
+      }
+      window.addEventListener("load", async () => {
+        await new Promise(r => setTimeout(r, 2200));
+        const lines = [...gl.querySelectorAll(".stroke")], dots = [...gd.children];
+        lines.forEach((l, i) => l.addEventListener("drawn", () => { if (dots[i]) dots[i].classList.add("is-lit"); }));
+        drawStrokes(gl, { speed: 90 });
+      });
+    })();
+  </script>
+</body>
+</html>

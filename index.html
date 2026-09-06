@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24163a">
+  <title>For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-night" data-transition="petals" data-manual-reveal>
+  <canvas class="sky" aria-hidden="true"></canvas>
+  <div class="moon" style="top:8%; right:10%;" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="stage">
+      <p class="eyebrow" data-reveal="300">a little something</p>
+
+      <div class="envelope-wrap" data-reveal="900">
+        <div class="envelope" id="envelope" aria-hidden="true">
+          <div class="env-back"></div>
+          <div class="env-letter"><span>for you 💜</span></div>
+          <div class="env-front"></div>
+          <div class="env-flap"></div>
+          <div class="env-seal">A</div>
+          <div class="env-addr">to: Anjali</div>
+          <div class="env-flowers" aria-hidden="true">
+            <svg viewBox="0 0 120 90"><g fill="none" stroke="#dccbf2" stroke-width="1.6" stroke-linecap="round">
+              <path d="M20 88c4-22 12-38 26-50"/><path d="M50 88c2-16 8-30 20-40"/><path d="M78 88c-2-14 0-26 8-36"/>
+              <g fill="#c48ad6" stroke="none" opacity=".9"><circle cx="46" cy="38" r="4"/><circle cx="52" cy="33" r="4"/><circle cx="58" cy="38" r="4"/><circle cx="52" cy="43" r="4"/><circle cx="52" cy="38" r="2.5" fill="#f0dfb0"/></g>
+              <g fill="#bda6e6" stroke="none" opacity=".9"><circle cx="70" cy="48" r="3.4"/><circle cx="75" cy="44" r="3.4"/><circle cx="80" cy="48" r="3.4"/><circle cx="75" cy="52" r="3.4"/><circle cx="75" cy="48" r="2" fill="#f0dfb0"/></g>
+              <g fill="#a57fb4" stroke="none" opacity=".9"><circle cx="86" cy="52" r="2.6"/><circle cx="90" cy="49" r="2.6"/><circle cx="94" cy="52" r="2.6"/><circle cx="90" cy="55" r="2.6"/></g>
+              <path d="M30 70c-8-2-12 2-14 8 8 2 12-2 14-8zM60 66c8-2 12 2 14 8-8 2-12-2-14-8z" fill="#5a3a8c" opacity=".8"/>
+            </g></svg>
+          </div>
+          <div class="env-flowers env-flowers--r" aria-hidden="true">
+            <svg viewBox="0 0 120 90"><g fill="none" stroke="#dccbf2" stroke-width="1.6" stroke-linecap="round">
+              <path d="M20 88c4-22 12-38 26-50"/><path d="M50 88c2-16 8-30 20-40"/>
+              <g fill="#bda6e6" stroke="none" opacity=".9"><circle cx="46" cy="38" r="4"/><circle cx="52" cy="33" r="4"/><circle cx="58" cy="38" r="4"/><circle cx="52" cy="43" r="4"/><circle cx="52" cy="38" r="2.5" fill="#f0dfb0"/></g>
+              <g fill="#c48ad6" stroke="none" opacity=".9"><circle cx="70" cy="48" r="3.4"/><circle cx="75" cy="44" r="3.4"/><circle cx="80" cy="48" r="3.4"/><circle cx="75" cy="52" r="3.4"/><circle cx="75" cy="48" r="2" fill="#f0dfb0"/></g>
+              <path d="M30 70c-8-2-12 2-14 8 8 2 12-2 14-8z" fill="#5a3a8c" opacity=".8"/>
+            </g></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step is-active" id="step1">
+        <p class="whisper" data-reveal="1800">I made something for you...</p>
+        <h1 class="title script" data-reveal="3000" style="font-family: var(--font-script); font-weight: 600;">Anjali</h1>
+        <p class="lead" data-reveal="4300">Promise you won't judge the amount of effort I put into this? 👀</p>
+        <button class="btn btn-large" id="promise" type="button" data-reveal="5300">I Promise 🤞</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <p class="whisper" data-reveal="200">Okay.</p>
+        <p class="whisper" data-reveal="1200">I trust you.</p>
+        <a class="btn btn-large" id="open" href="birthday.html" data-reveal="2300">Open It 💌</a>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <span></span>
+      <span class="chapter" data-chapter></span>
+      <span></span>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    (function () {
+      const env = document.getElementById("envelope");
+      const step1 = document.getElementById("step1"), step2 = document.getElementById("step2");
+      window.addEventListener("load", () => setTimeout(() => revealSequence(step1.parentElement), 200));
+
+      document.getElementById("promise").addEventListener("click", e => {
+        sparkleAt(e.clientX || innerWidth / 2, e.clientY || innerHeight / 2, 10);
+        // Start the music quietly on her first tap (never before)
+        if (window.birthdayMusic) birthdayMusic.play();
+        step1.classList.remove("is-active");
+        step2.classList.add("is-active");
+        revealSequence(step2);
+      });
+
+      // Open the envelope, then float to the next chapter
+      document.getElementById("open").addEventListener("click", e => {
+        e.preventDefault(); e.stopImmediatePropagation();
+        const href = e.currentTarget.href;
+        env.classList.add("is-open");
+        const r = env.getBoundingClientRect();
+        sparkleAt(r.left + r.width / 2, r.top + r.height * .55, 14);
+        setTimeout(() => window.__chapter.leaveTo(href), window.__chapter.reduceMotion ? 400 : 3200);
+      }, true);
+    })();
+  </script>
+</body>
+</html>

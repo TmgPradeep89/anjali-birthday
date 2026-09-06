@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2b1c48">
+  <title>Someday · For Anjali</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-someday" data-transition="petals">
+  <div class="horizon" aria-hidden="true">
+    <div class="sun"></div>
+    <div class="cloud" style="--w:22rem; left:-4rem; top:26%; --t:80s; --dx:60px; --dy:0"></div>
+    <div class="cloud" style="--w:16rem; right:-3rem; top:36%; --t:70s; --dx:-50px; --dy:0; animation-delay:-20s"></div>
+    <div class="cloud" style="--w:12rem; left:30%; top:18%; --t:90s; --dx:40px; --dy:0; animation-delay:-40s; opacity:.6"></div>
+    <div class="hills">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0 200C200 120 380 160 560 140S900 60 1100 120s240 40 340 20v180H0z" fill="#8f6fb4" opacity=".55"/>
+        <path d="M0 250C240 190 420 230 640 200s380-60 560 0 200 30 240 20v100H0z" fill="#5a3a8c" opacity=".7"/>
+        <path d="M0 300C260 250 480 290 720 270s420-40 720 0v50H0z" fill="#3a2560"/>
+      </svg>
+    </div>
+    <div class="meadow" id="meadow"></div>
+    <span class="silhouette" style="left:22%"></span>
+    <span class="silhouette" style="left:78%; animation-delay:2.5s"></span>
+  </div>
+
+  <main class="page">
+    <div class="stage">
+      <p class="eyebrow" data-reveal="200" style="color:var(--gold-2)">chapter fourteen</p>
+      <div class="someday-lines">
+        <p class="whisper" data-reveal="1200">Maybe someday we'll finally meet.</p>
+        <p class="whisper" data-reveal="3800">Maybe we'll finally get that first photo.</p>
+        <p class="whisper" data-reveal="6400">Maybe I'll finally get to give you that hug.</p>
+        <p class="whisper" data-reveal="9600" style="margin-top:1rem; opacity:.9">Until then...</p>
+        <h2 class="title" data-reveal="11200" style="font-size:clamp(1.7rem,5vw,3rem)">We'll keep collecting memories<br>from wherever we are.</h2>
+        <p class="hand" data-reveal="13600" style="font-size:1.35rem; color:var(--ivory); margin-top:.8rem">no promises. just a really, really good hope.</p>
+      </div>
+    </div>
+
+    <nav class="page-nav" aria-label="Chapter navigation">
+      <a class="btn btn-ghost nav-back" data-prev href="memory.html" style="color:var(--ivory); border-color:rgba(255,255,255,.35)">← Back</a>
+      <span class="chapter" data-chapter style="color:var(--ivory)"></span>
+      <a class="btn nav-next is-waiting btn-gold" data-next href="gift.html">One Last Surprise <span class="arrow">→</span></a>
+    </nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // a meadow of swaying lavender stalks along the bottom
+    (function () {
+      const m = document.getElementById("meadow");
+      const n = Math.max(10, Math.round(innerWidth / 60));
+      for (let i = 0; i < n; i++) {
+        const b = document.createElement("div"); b.className = "blade";
+        const h = 60 + Math.random() * 70, x = (i / n) * 100 + (Math.random() - .5) * 3;
+        b.style.cssText = `left:${x}%; width:${2 + Math.random() * 1.6}rem; animation-delay:${-Math.random() * 5}s; animation-duration:${4 + Math.random() * 3}s; opacity:${.55 + Math.random() * .45}`;
+        const buds = Array.from({ length: 7 }, (_, k) => `<ellipse cx="${20 + (k % 2 ? 4 : -4)}" cy="${18 + k * 7}" rx="4.5" ry="3.2" fill="${k % 3 ? '#a57fb4' : '#c48ad6'}"/>`).join("");
+        b.innerHTML = `<svg viewBox="0 0 40 ${h + 60}" style="width:100%; height:auto"><path d="M20 ${h + 60}C21 ${h} 19 60 20 20" fill="none" stroke="#6f9c76" stroke-width="2"/>${buds}</svg>`;
+        m.appendChild(b);
+      }
+    })();
+  </script>
+</body>
+</html>
